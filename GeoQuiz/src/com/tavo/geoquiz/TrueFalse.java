@@ -2,7 +2,7 @@ package com.tavo.geoquiz;
 
 public class TrueFalse {
 	private int mQuestion;
-	private Boolean mTrueQuestion;
+	private boolean mTrueQuestion;
 	
 	public TrueFalse(int question, Boolean trueQuestion) {
 		mQuestion = question;
@@ -17,11 +17,11 @@ public class TrueFalse {
 		mQuestion = question;
 	}
 
-	public Boolean getTrueQuestion() {
+	public boolean isTrueQuestion() {
 		return mTrueQuestion;
 	}
 
-	public void setTrueQuestion(Boolean trueQuestion) {
+	public void setTrueQuestion(boolean trueQuestion) {
 		mTrueQuestion = trueQuestion;
 	}
 	

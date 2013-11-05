@@ -9,10 +9,15 @@
 	<string name="incorrect_toast">Incorrecto!</string>
 	<string name="next_question_button">Siguiente</string>
 	<string name="prev_question_button">Anterior</string>
-	<string name="question_1">Pregunta 1</string>
-	<string name="question_2">Pregunta 2</string>
-	<string name="question_3">Pregunta 3</string>
-	<string name="question_4">Pregunta 4</string>
-	<string name="question_5">Pregunta 5</string>
-	<string name="question_6">Pregunta 6</string>
+	<string name="question_1">Cartago fue la antigua capital de Costa Rica</string>
+	<string name="question_2">Mira Flores es un Canton de Heredia</string>
+	<string name="question_3">El volcan Irazu se encuentra en Alajuela</string>
+	<string name="question_4">Los gatos tienen 9 vidas?</string>
+	<string name="question_5">Costa Rica es un pais de Centroamerica</string>
+	<string name="question_6">Panama es una isla en el Caribe</string>
+	
+	<string name="cheat_button">Hacer trampa</string>
+	<string name="warning_text">Esta seguro que quiere hacerlo?</string>
+	<string name="show_answer_button">Mostrar Respuesta</string>
+	<string name="Judgment_toast">Es malo hacer trampa.</string>
 </resources>
