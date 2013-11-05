@@ -2,6 +2,7 @@ package com.tavo.geoquiz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ public class CheatActivity extends Activity {
 	private boolean mAnswerIsTrue;
 	private boolean mCheated = false;
 	private TextView mAnswerTextView;
+	private TextView mVersionTextView;
 	private Button mShowAnswer;
 	
 	private void setAnswerShownResult(boolean isAnswerShown) {
@@ -41,7 +43,10 @@ public class CheatActivity extends Activity {
 		
 		mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 		mAnswerTextView = (TextView)findViewById(R.id.answerTextView);
+		mVersionTextView = (TextView)findViewById(R.id.versionTextView);
 		mShowAnswer = (Button)findViewById(R.id.showAnswerButton);
+		
+		mVersionTextView.setText("API Level " + Build.VERSION.SDK);
 		
 		mShowAnswer.setOnClickListener(new View.OnClickListener() {
 			@Override
