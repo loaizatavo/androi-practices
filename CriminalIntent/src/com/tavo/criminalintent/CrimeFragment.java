@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 public class CrimeFragment extends Fragment {
@@ -30,8 +33,17 @@ public class CrimeFragment extends Fragment {
 		mTitleField = (EditText)v.findViewById(R.id.crime_title);
 		mDateButton = (Button)v.findViewById(R.id.crime_date);
 		
-		mDateButton.setText(mCrime.getDate().toString());
+		// "yyyy-MM-dd hh:mm:ss"
+		mDateButton.setText( DateFormat.format("E, MMMM dd, yyyy", mCrime.getDate()) );
 		mDateButton.setEnabled(false);
+		mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+		
+		mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				mCrime.setSolved(isChecked);
+			}
+		});
 		
 		mTitleField.addTextChangedListener(new TextWatcher() {
 			
