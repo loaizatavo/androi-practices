@@ -1,5 +1,8 @@
 package com.tavo.criminalintent;
 
+import java.util.UUID;
+
+import android.R.array;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -15,6 +18,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 public class CrimeFragment extends Fragment {
+	public static final String EXTRA_CRIME_ID = "com.tavo.criminalintent.crime_id";
 	private Crime mCrime;
 	private EditText mTitleField;
 	private Button mDateButton;
@@ -23,7 +27,16 @@ public class CrimeFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mCrime = new Crime();
+		
+		//UUID crimeId = (UUID)getActivity().getIntent().getSerializableExtra(EXTRA_CRIME_ID);
+		
+		UUID crimeId = (UUID)getArguments().getSerializable(EXTRA_CRIME_ID);
+		if (crimeId != null) {
+			mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+		}
+		else {
+			mCrime = new Crime();
+		}
 	}
 	
 	@Override
@@ -32,11 +45,14 @@ public class CrimeFragment extends Fragment {
 		
 		mTitleField = (EditText)v.findViewById(R.id.crime_title);
 		mDateButton = (Button)v.findViewById(R.id.crime_date);
-		
-		// "yyyy-MM-dd hh:mm:ss"
-		mDateButton.setText( DateFormat.format("E, MMMM dd, yyyy", mCrime.getDate()) );
-		mDateButton.setEnabled(false);
 		mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+		
+		mTitleField.setText(mCrime.getTitle());
+		// "yyyy-MM-dd hh:mm:ss"
+		mDateButton.setText( DateFormat.format("EEEE, MMMM dd, yyyy", mCrime.getDate()) );
+		mDateButton.setEnabled(false);
+		mSolvedCheckBox.setChecked(mCrime.isSolved());
+		
 		
 		mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
@@ -66,4 +82,18 @@ public class CrimeFragment extends Fragment {
 		
 		return v;
 	}	
+	
+	//metodo para crear el bundle de argumentos y retornar un objeto configurado
+	public static CrimeFragment newInstance(UUID crimeId) {
+		//Bundle es una clase contenedora key -> value 
+		Bundle args = new Bundle();
+		args.putSerializable(EXTRA_CRIME_ID, crimeId);
+		
+		CrimeFragment fragment = new CrimeFragment();
+		//Asigna los valores al fragment
+		fragment.setArguments(args);
+		
+		//retorna la instancia del fragment
+		return fragment;
+	}
 }

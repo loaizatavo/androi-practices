@@ -1,26 +1,21 @@
 package com.tavo.criminalintent;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import java.util.UUID;
 
-public class CrimeActivity extends FragmentActivity {
+import android.support.v4.app.Fragment;
+
+public class CrimeActivity extends SingleFrameActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_crime);
+	protected Fragment createFragment() {
+		UUID crimeId = (UUID)getIntent().getSerializableExtra(CrimeFragment.EXTRA_CRIME_ID);
 		
-		FragmentManager fm = getSupportFragmentManager();
-		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
-		if (fragment == null) {
-			//importante: aqui se asocia la instancia del fragment
-			fragment = new CrimeFragment();
-			fm.beginTransaction()
-				.add(R.id.fragmentContainer, fragment)
-				.commit();
+		// si hay un parametro con el ID recupera el fragment
+		if (crimeId != null) {
+			return CrimeFragment.newInstance(crimeId);
 		}
+		
+		return new CrimeFragment();
 	}
 
 }

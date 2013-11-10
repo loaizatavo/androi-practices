@@ -14,6 +14,11 @@ public class Crime {
 		mId = UUID.randomUUID();
 		mDate = new Date();
 	}
+	
+	@Override
+	public String toString() {
+		return mTitle;
+	}
 
 	public boolean isSolved() {
 		return mSolved;
@@ -42,6 +47,5 @@ public class Crime {
 	public UUID getId() {
 		return mId;
 	}
-	
 	
 }
