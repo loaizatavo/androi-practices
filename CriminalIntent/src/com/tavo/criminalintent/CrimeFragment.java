@@ -2,9 +2,9 @@ package com.tavo.criminalintent;
 
 import java.util.UUID;
 
-import android.R.array;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateFormat;
@@ -19,6 +19,7 @@ import android.widget.EditText;
 
 public class CrimeFragment extends Fragment {
 	public static final String EXTRA_CRIME_ID = "com.tavo.criminalintent.crime_id";
+	private static final String DIALOG_DATE = "date";
 	private Crime mCrime;
 	private EditText mTitleField;
 	private Button mDateButton;
@@ -50,8 +51,16 @@ public class CrimeFragment extends Fragment {
 		mTitleField.setText(mCrime.getTitle());
 		// "yyyy-MM-dd hh:mm:ss"
 		mDateButton.setText( DateFormat.format("EEEE, MMMM dd, yyyy", mCrime.getDate()) );
-		mDateButton.setEnabled(false);
 		mSolvedCheckBox.setChecked(mCrime.isSolved());
+		mDateButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				FragmentManager fm = getActivity().getSupportFragmentManager();
+				DatePickerFragment dialog = DatePickerFragment.newInstance(mCrime.getDate());
+				dialog.show(fm, DIALOG_DATE);
+			}
+		});
 		
 		
 		mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {

@@ -8,5 +8,6 @@
 	<string name="crime_solved_label">Resuelto?</string>
 	<string name="crime_details_label">Detalles</string>
 	<string name="crimes_title">Lista de Crimenes</string>
+	<string name="date_picker_title">Fecha del crimen</string>
 	
 </resources>
