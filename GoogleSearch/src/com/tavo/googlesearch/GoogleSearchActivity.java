@@ -49,16 +49,6 @@ public class GoogleSearchActivity extends Activity {
 						catch (Exception e) {
 							Log.v("Exception Google search", "Exception: "+e.getMessage());
 						}
-						/*runOnUiThread(new Runnable(){
-							public void run(){
-								try {
-									tv1.setText(searchRequest(ed1.getText().toString()));
-								} catch(Exception e) {
-									Log.v("Exception Google search", "Exception: "+e.getMessage());
-								}
-							}
-						});*/
-					
 				}
 				ed1.setText("");
 			}
@@ -87,8 +77,7 @@ public class GoogleSearchActivity extends Activity {
 	     }
 
 	     protected void onPostExecute(String result) {
-	    	 
-	    	 //tv1.setText();
+	    	 // esto se ejecuta cuando termina la tarea
 	    	 Log.v("gsearch", "el resultado es: " + result);
 	    	 tv1.setText(result);
 	     }
