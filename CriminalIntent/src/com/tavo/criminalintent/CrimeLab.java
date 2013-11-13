@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import android.content.Context;
+import android.text.format.Time;
 
 public class CrimeLab {
 	private static CrimeLab sCrimaLab;
@@ -21,6 +22,7 @@ public class CrimeLab {
 			c.setTitle("Crime #" + i);
 			c.setSolved(i % 2 == 0);
 			c.setDate(new Date());
+			c.setTime(new Date());
 			
 			// se agrega el objecto a la lista
 			mCrimes.add(c);

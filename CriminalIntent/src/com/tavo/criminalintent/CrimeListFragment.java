@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.text.format.DateFormat;
+import android.text.format.Time;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -90,8 +91,8 @@ public class CrimeListFragment extends ListFragment {
 			TextView dateTextView = (TextView)convertView.findViewById(R.id.crime_list_item_dateTextView);
 			dateTextView.setText(DateFormat.format("EEEE, MMMM dd, yyyy", c.getDate()));
 			
-			CheckBox solvedCheckBox = (CheckBox)convertView.findViewById(R.id.crime_list_item_solvedCheckBox);
-			solvedCheckBox.setChecked(c.isSolved());
+			TextView timetextView = (TextView)convertView.findViewById(R.id.crime_list_item_timeTextView);
+			timetextView.setText( DateFormat.format("hh:mm aa", c.getTime()) );
 			
 			return convertView;
 		}
