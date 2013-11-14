@@ -13,6 +13,14 @@ public class HelloMoonFragment extends Fragment {
 	private AudioPlayer mPlayer = new AudioPlayer();
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		// evita que se destruya el frame al rotar el dispositivo
+		setRetainInstance(true);
+	}
+	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.fragment_hello_moon, parent, false);
 		mPlayButton = (Button)v.findViewById(R.id.hellomoon_playButton);
@@ -33,7 +41,7 @@ public class HelloMoonFragment extends Fragment {
 				mPlayer.stop();
 			}
 		});
-		
+				
 		return v;
 	}
 	
